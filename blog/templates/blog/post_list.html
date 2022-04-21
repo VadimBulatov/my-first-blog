@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Vadim Bulatov's blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Vadim Bulatov's blog</a></h1>
-        </header>
+{% extends 'blog/base.html' %}
 
-        <article>
-            <time>published: 19.04.2022, 16:32</time>
-            <h2><a href=''>My first post</a></h2>
-            <p> Holotropic breathing </p>
+{%block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
+    {% endfor %}
+{% endblock %}
 
-        <article>
-            <time>published: 19.04.2022, 16:32</time>
-            <h2><a href=''>My second post</a></h2>
-            <p> How deliberate cold exposure may improve your life <p>
-        </article>
-    </body>
-</html>
